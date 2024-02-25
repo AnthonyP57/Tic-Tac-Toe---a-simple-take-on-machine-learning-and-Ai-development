@@ -1,12 +1,13 @@
 import pygame as pg
-import time
 import random
 import pandas as pd
 from ai_moves import ai_move,restart,next_move,prev_move
 from nn_player import nn_move, nn_restart, nn_prev_move
 
+#fps cap
 fps = 30
 
+#innitiate pygame
 pg.init()
 
 #display info
@@ -15,10 +16,11 @@ width = info_object.current_w
 height = info_object.current_h
 print(width,height)
 
-width = 1600
-height = 900
+# width = 1600
+# height = 900
 gui_scale = 1
 
+#board for bots
 df_board = {"left":[11,21,31],
           "mid":[12,22,32],
           "right":[13,23,33]
@@ -28,15 +30,14 @@ df_board = pd.DataFrame(df_board, index=[0,1,2])
 restart()
 nn_restart()
 
+#to translate moves since I used other naming method for bots
 board_dict = {1:11,2:12,3:13,4:21,5:22,6:23,7:31,8:32,9:33}
 ai_dict =  {11:1,12:2,13:3,21:4,22:5,23:6,31:7,32:8,33:9}
 
-move_sequence=[]
-
-print(board_dict[3])
-
+#grid tiles offset
 tile_px = round(gui_scale*height/9)
 grid_vert = round(gui_scale*height/2.25)
+
 #square class in grid
 class Square(pg.sprite.Sprite):
     def __init__(self, x_id, y_id, number):
@@ -55,6 +56,7 @@ class Square(pg.sprite.Sprite):
         self.rect.center = (self.x, self.y)
 
     def clicked(self, x_val, y_val):
+        #what to do when player selected a square - do not touch
         global turn, won, player_first, bot_type, tie
         if self.content == '':
             if self.rect.collidepoint(x_val,y_val) and len(move_sequence) == 8 and player_first == True:
@@ -121,9 +123,59 @@ class Square(pg.sprite.Sprite):
                         check_tie()
                 print(board)
                 return self.number
-
-
+    def theme_update(self):
+        #update grid theme
+        global blank_img, x_img, o_img, theme
+        if theme == 'doom':
+            blank_img = blank_doom
+            x_img = x_doom
+            o_img = o_doom
+            if self.content == '':
+                self.image = blank_doom
+                self.image = pg.transform.scale(self.image, (self.width, self.height))
+                self.rect = self.image.get_rect()
+            elif self.content == 'x':
+                self.image = x_doom
+                self.image = pg.transform.scale(self.image, (self.width, self.height))
+                self.rect = self.image.get_rect()
+            elif self.content == 'o':
+                self.image = o_doom
+                self.image = pg.transform.scale(self.image, (self.width, self.height))
+                self.rect = self.image.get_rect()
+        elif theme == 'candy':
+            blank_img = blank_candy
+            x_img = x_candy
+            o_img = o_candy
+            if self.content == '':
+                self.image = blank_candy
+                self.image = pg.transform.scale(self.image, (self.width, self.height))
+                self.rect = self.image.get_rect()
+            elif self.content == 'x':
+                self.image = x_candy
+                self.image = pg.transform.scale(self.image, (self.width, self.height))
+                self.rect = self.image.get_rect()
+            elif self.content == 'o':
+                self.image = o_candy
+                self.image = pg.transform.scale(self.image, (self.width, self.height))
+                self.rect = self.image.get_rect()
+        elif theme == 'org':
+            blank_img = blank_original
+            x_img = x_original
+            o_img = o_original
+            if self.content == '':
+                self.image = blank_original
+                self.image = pg.transform.scale(self.image, (self.width, self.height))
+                self.rect = self.image.get_rect()
+            elif self.content == 'x':
+                self.image = x_original
+                self.image = pg.transform.scale(self.image, (self.width, self.height))
+                self.rect = self.image.get_rect()
+            elif self.content == 'o':
+                self.image = o_original
+                self.image = pg.transform.scale(self.image, (self.width, self.height))
+                self.rect = self.image.get_rect()
 class button():
+    #it is just a button class
     def __init__(self, x, y, image, scale):
         width = image.get_width()
         height = image.get_height()
@@ -151,8 +203,9 @@ class button():
 
         return action
 
+#game screen
 def Update():
-    global won_animation, tie, won , won_fps, fps, win_img, click_prompt, theme
+    global won_animation, tie, won , won_fps, fps, win_img, click_prompt, theme, tie_prompt
     if theme == 'org':
         background = org_bg
         bg_front = org_front
@@ -168,19 +221,24 @@ def Update():
 
     win.blit(background, (0,0+scroll))
     win.blit(background,(0,-height+scroll))
+    win.blit(background, (height*16/9, 0 + scroll))
+    win.blit(background, (height*16/9, -height + scroll))
     win.blit(bg_front, (0,0+scroll2))
     win.blit(bg_front,(0,0-height+scroll2))
-    win.blit(logo, (0, 0))
+    win.blit(bg_front, (height*16/9, 0 + scroll2))
+    win.blit(bg_front, (height*16/9, 0 - height + scroll2))
+    win.blit(logo, ((width/2-16/9*height/2), 0))
     square_group.draw(win)
     square_group.update()
     menu_button.draw(win)
     quit_button.draw(win)
-    if tie == True:
-        tie_scr = pg.image.load('Tie Game.png')
-        tie_scr = pg.transform.scale(tie_scr, (height/3, height/3))
-        win.blit(tie_scr, (100, 300))
+    if tie == True and tie_prompt == True:
+        if theme == 'candy':
+            win.blit(tie_scr_candy, ((width/2-16/9*height/2), 0))
+        else:
+            win.blit(tie_scr, ((width / 2 - 16 / 9 * height / 2), 0))
     if won == True and won_animation == True:
-        win.blit(win_img, (100, 100))
+        win.blit(win_img, ((width/2-16/9*height/2), 0))
         won_fps += 1
         if won_fps < fps:
             draw_line(startx, starty, endx, endy)
@@ -190,7 +248,10 @@ def Update():
             won_fps = 0
             won_animation = False
     if click_prompt == True:
-        win.blit(click_img, (100, 500))
+        if theme == 'candy':
+            win.blit(click_candy, ((width/2-16/9*height/2), 0))
+        else:
+            win.blit(click_img, ((width / 2 - 16 / 9 * height / 2), 0))
     pg.display.update()
 
 def display_menu():
@@ -209,13 +270,17 @@ def display_menu():
         logo = candy_logo
     win.blit(background, (0, 0 + scroll))
     win.blit(background, (0, -height + scroll))
+    win.blit(background, (height * 16 / 9, 0 + scroll))
+    win.blit(background, (height * 16 / 9, -height + scroll))
     win.blit(bg_front, (0, 0 + scroll2))
     win.blit(bg_front, (0, 0 - height + scroll2))
-    win.blit(logo, (0, round(height/5)))
+    win.blit(bg_front, (height * 16 / 9, 0 + scroll2))
+    win.blit(bg_front, (height * 16 / 9, 0 - height + scroll2))
+    win.blit(logo, ((width/2-16/9*height/2), round(height/5)))
     difficulty_button.draw(win)
     about_button.draw(win)
     theme_button.draw(win)
-    quit_button.draw(win)
+    # quit_button.draw(win)
     pg.display.update()
 
 def display_difficulty():
@@ -234,13 +299,17 @@ def display_difficulty():
         logo = candy_logo
     win.blit(background, (0, 0 + scroll))
     win.blit(background, (0, -height + scroll))
+    win.blit(background, (height * 16 / 9, 0 + scroll))
+    win.blit(background, (height * 16 / 9, -height + scroll))
     win.blit(bg_front, (0, 0 + scroll2))
     win.blit(bg_front, (0, 0 - height + scroll2))
-    win.blit(logo,(0,0))
+    win.blit(bg_front, (height * 16 / 9, 0 + scroll2))
+    win.blit(bg_front, (height * 16 / 9, 0 - height + scroll2))
+    win.blit(logo,((width/2-16/9*height/2),0))
     ai_button.draw(win)
     nn_button.draw(win)
     ml_button.draw(win)
-    quit_button.draw(win)
+    # quit_button.draw(win)
     pg.display.update()
 
 def display_theme():
@@ -259,13 +328,17 @@ def display_theme():
         logo = candy_logo
     win.blit(background, (0, 0 + scroll))
     win.blit(background, (0, -height + scroll))
+    win.blit(background, (height * 16 / 9, 0 + scroll))
+    win.blit(background, (height * 16 / 9, -height + scroll))
     win.blit(bg_front, (0, 0 + scroll2))
     win.blit(bg_front, (0, 0 - height + scroll2))
-    win.blit(logo,(0,0))
+    win.blit(bg_front, (height * 16 / 9, 0 + scroll2))
+    win.blit(bg_front, (height * 16 / 9, 0 - height + scroll2))
+    win.blit(logo,((width/2-16/9*height/2),0))
     candy_button.draw(win)
     doom_button.draw(win)
     original_button.draw(win)
-    quit_button.draw(win)
+    # quit_button.draw(win)
     pg.display.update()
 
 def about():
@@ -281,10 +354,17 @@ def about():
         bg_front = candy_front
     win.blit(background, (0, 0 + scroll))
     win.blit(background, (0, -height + scroll))
+    win.blit(background, (height * 16 / 9, 0 + scroll))
+    win.blit(background, (height * 16 / 9, -height + scroll))
     win.blit(bg_front, (0, 0 + scroll2))
     win.blit(bg_front, (0, 0 - height + scroll2))
-    win.blit(x_img,(0,0))
-    quit_button.draw(win)
+    win.blit(bg_front, (height * 16 / 9, 0 + scroll2))
+    win.blit(bg_front, (height * 16 / 9, 0 - height + scroll2))
+    if theme == 'candy':
+        win.blit(about_candy,(width/2-16/9*height/2,0))
+    else:
+        win.blit(about_org, (width / 2 - 16 / 9 * height / 2, 0))
+    # quit_button.draw(win)
     pg.display.update()
 
 def winner(player):
@@ -318,13 +398,16 @@ def draw_line(x1,y1,x2,y2):
     pg.display.update()
     # time.sleep(1)
 
-
 def check_winner(player):
-    global background, won,startx,starty,endx,endy, won_animation, win_img
+    global background, won,startx,starty,endx,endy, won_animation, win_img, theme
     for i in range(8):
         if board[winners[i][0]] == player and board[winners[i][1]] == player and board[winners[i][2]] == player:
-            win_img = pg.image.load(player.upper() + ' Wins.png')
-            win_img = pg.transform.scale(win_img, (height / 3, height / 3))
+            if theme == 'candy':
+                win_img = pg.image.load(player.upper() + ' Wins candy.png')
+                win_img = pg.transform.scale(win_img,(height*16/9, height)).convert_alpha()
+            else:
+                win_img = pg.image.load(player.upper() + ' Wins.png')
+                win_img = pg.transform.scale(win_img, (height * 16 / 9, height)).convert_alpha()
             won = True
             won_animation = True
             getpos(winners[i][0],winners[i][2])
@@ -356,13 +439,6 @@ def botmove():
                 s.clicked(s.x, s.y)
                 move_sequence.append(pcmove)
                 df_board.replace(pcmove,'A',inplace=True)
-
-    # else:
-    #     Update()
-    #     time.sleep(1)
-    #     square_group.empty()
-    #     background = pg.image.load('Tie Game.png')
-    #     background = pg.transform.scale(background,(width,height))
 
 def check_tie():
     global tie
@@ -431,17 +507,33 @@ def checkedge():
             move = False
             break
 
+#diplay
 win = pg.display.set_mode((width, height))
 pg.display.set_caption('Tic Tac Toe')
+icon = pg.image.load('icon.png')
+pg.display.set_icon(icon)
 clock = pg.time.Clock()
 
 # images
 org_difficulty = pg.image.load('original_difficulty.png').convert_alpha()
 org_theme = pg.image.load('original_theme.png').convert_alpha()
 org_about = pg.image.load('original_about.png').convert_alpha()
-blank_img = pg.image.load('Blank.png').convert_alpha()
-x_img = pg.image.load('x.png').convert_alpha()
-o_img = pg.image.load('o.png').convert_alpha()
+
+blank_original = pg.image.load('original_grid.png').convert_alpha()
+x_original = pg.image.load('original_x.png').convert_alpha()
+o_original = pg.image.load('original_o.png').convert_alpha()
+
+blank_img = blank_original
+x_img = x_original
+o_img = o_original
+
+blank_candy = pg.image.load('candy_grid.png').convert_alpha()
+x_candy = pg.image.load('candy_x.png').convert_alpha()
+o_candy = pg.image.load('candy_o.png').convert_alpha()
+
+blank_doom = pg.image.load('doom_grid.png').convert_alpha()
+x_doom = pg.image.load('doom_x.png').convert_alpha()
+o_doom = pg.image.load('doom_o.png').convert_alpha()
 
 doom_bg  = pg.image.load("tictactoe_doom_theme_bg.png")
 doom_bg = pg.transform.scale(doom_bg, (height*16/9, height)).convert_alpha()
@@ -449,12 +541,14 @@ doom_front = pg.image.load("tictactoe_doom_theme_bgfront.png")
 doom_front = pg.transform.scale(doom_front, (height*16/9, height)).convert_alpha()
 doom_logo = pg.image.load('tictactoe_doom_theme_logo.png')
 doom_logo = pg.transform.scale(doom_logo,(height*16/9, height)).convert_alpha()
+
 org_bg = pg.image.load("tictactoe_original_theme_bg.png")
 org_bg = pg.transform.scale(org_bg, (height*16/9, height)).convert_alpha()
 org_front = pg.image.load("tictactoe_original_theme_bgfront.png")
 org_front = pg.transform.scale(org_front, (height*16/9, height)).convert_alpha()
 org_logo = pg.image.load('tictactoe_original_theme_logo.png')
 org_logo = pg.transform.scale(org_logo,(height*16/9, height)).convert_alpha()
+
 candy_logo = pg.image.load('tictactoe_candy_theme_logo.png')
 candy_logo = pg.transform.scale(candy_logo,(height*16/9, height)).convert_alpha()
 candy_bg = pg.image.load("tictactoe_candy_theme_bg.png")
@@ -462,26 +556,39 @@ candy_bg = pg.transform.scale(candy_bg, (height*16/9, height)).convert()
 candy_front = pg.image.load("tictactoe_candy_theme_bgfront.png")
 candy_front = pg.transform.scale(candy_front, (height*16/9, height)).convert_alpha()
 
+tie_scr = pg.image.load('tie.png')
+tie_scr = pg.transform.scale(tie_scr, (height * 16 / 9, height)).convert_alpha()
+tie_scr_candy = pg.image.load('tie_candy.png')
+tie_scr_candy = pg.transform.scale(tie_scr_candy, (height * 16 / 9, height)).convert_alpha()
+
+about_org = pg.image.load('about.png')
+about_org = pg.transform.scale(about_org, (height*16/9, height)).convert_alpha()
+
+about_candy = pg.image.load('about_candy.png')
+about_candy = pg.transform.scale(about_candy, (height*16/9, height)).convert_alpha()
 candy_menu = pg.image.load('candy_menu.png').convert_alpha()
 candy_quit = pg.image.load('candy_quit.png').convert_alpha()
+
 original_menu = pg.image.load('original_menu.png').convert_alpha()
 original_quit = pg.image.load('original_quit.png').convert_alpha()
+
 doom_menu = pg.image.load('doom_menu.png').convert_alpha()
 doom_quit = pg.image.load('doom_quit.png').convert_alpha()
 
-menu_bg  = pg.image.load('Background.png').convert_alpha()
-menu_bg = pg.transform.scale(menu_bg, (width, height)).convert_alpha()
-difficulty_bg  = pg.image.load('Background.png').convert_alpha()
-difficulty_bg = pg.transform.scale(difficulty_bg, (width, height)).convert_alpha()
 ai_img = pg.image.load('ai.png').convert_alpha()
 nn_img = pg.image.load('nn.png').convert_alpha()
 ml_img = pg.image.load('ml.png').convert_alpha()
-theme_bg = pg.image.load('Background.png').convert_alpha()
+
 candy_img = pg.image.load('candy.png').convert_alpha()
+
 doom_img = pg.image.load('doom.png').convert_alpha()
+
 original_img = pg.image.load('original.png').convert_alpha()
-about_bg = pg.image.load('Background.png').convert_alpha()
-click_img = pg.image.load('x.png').convert_alpha()
+click_img = pg.image.load('restart.png')
+click_img = pg.transform.scale(click_img, (height*16/9, height)).convert_alpha()
+
+click_candy = pg.image.load('restart_candy.png')
+click_candy = pg.transform.scale(click_candy, (height*16/9, height)).convert_alpha()
 
 win_img = None
 
@@ -491,9 +598,11 @@ difficulty_button = button(round(height/18),round(height/18),org_difficulty,roun
 theme_button = button(round(height/18),round(height/18+height/9),org_theme,round(height/1080))
 about_button = button(round(height/18),round(height/18+2*height/9),org_about,round(height/1080))
 quit_button = button(width - round(height / 50) - 33*round(0.75 * height / 1080), round(height / 50), original_quit, round(0.75 * height / 1080))
+
 ai_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25), ai_img, round(height/1080))
 nn_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + height/6), nn_img, round(height/1080))
 ml_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + 2*height/6), ml_img, round(height/1080))
+
 candy_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + 2*height/6), candy_img, round(height/1080))
 doom_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + height/6), doom_img, round(height/1080))
 original_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25), original_img, round(height/1080))
@@ -513,7 +622,7 @@ for y in range(1,4):
 
 
 
-# game loop
+# game variables - do not touch
 menu_screen = False
 difficulty_menu = False
 theme_screen = False
@@ -543,10 +652,12 @@ won_fps = 0
 won_animation = False
 click_prompt = False
 move_sequence=[]
-player_first = random.randint(1,2)==1
+player_first = random.randint(1,2) == 1 #decide at random who moves first
 tie_delay = 0
 tie_delay_go = False
-
+tie_fps = 0
+tie_fps_go = False
+tie_prompt = False
 paused_position_doom = 0
 paused_position_candy = 0
 elapsed_doom = 0
@@ -562,9 +673,11 @@ tie = False
 
 bot_type = 'nn'
 
+#game loop
 while run:
     clock.tick(fps)
 
+    #scrolling backgrounds
     scroll += speed*height*0.0005
     if abs(scroll) > height:
         scroll = 0
@@ -573,13 +686,25 @@ while run:
     if abs(scroll2) > height:
         scroll2 = 0
 
-    if tie == False:  # tie sometimes didnt work, it makes sure that when player_first == False tie can be initiated
+    if tie == False:
+        tie_prompt = False
+        # tie sometimes didnt work, it makes sure that when player_first == False tie can be initiated
         if len(move_sequence) == 9 and won == False:
             tie = True
+    else:
+        #tie screen delay
+        if tie_fps_go == False:
+            tie_fps += 1
+            if tie_fps > fps/4:
+                tie_fps = 0
+                tie_fps_go = False
+                tie_prompt = True
 
+    #delay for user input after tie
     if tie_delay_go == True:
         tie_delay += 1
         if tie_delay > 1:
+            tie_delay = 0
             tie_delay_go = False
 
     if menu_screen == True and difficulty_menu == False and theme_screen == False and about_screen == False:
@@ -666,6 +791,8 @@ while run:
                 menu_button = button(round(height / 50), round(height / 50), original_menu, round(0.75 * height / 1080))
                 quit_button = button(width - round(height / 50) - 33 * round(0.75 * height / 1080), round(height / 50), original_quit, round(0.75 * height / 1080))
                 pg.mixer.music.pause()
+                for s in squares:
+                    s.theme()
                 theme_screen = False
 
             if doom_button.draw(win):
@@ -675,9 +802,12 @@ while run:
                 pg.mixer.music.load('doom_theme.mp3')
                 paused_position_doom = paused_position_doom + elapsed_doom
                 if paused_position_doom/1000 > 5*60: # is paused position larger than song length
-                    paused_position_doom = paused_position_doom - 5*60*1000
+                    paused_position_doom = paused_position_doom - 5*60*1000 #song length in ms
                 print(paused_position_doom/1000)
                 pg.mixer.music.play(start=paused_position_doom/1000,loops=-1)
+                #update grid theme
+                for s in squares:
+                    s.theme_update()
                 theme_screen = False
 
             if candy_button.draw(win):
@@ -687,12 +817,15 @@ while run:
                 pg.mixer.music.load('candy_theme.mp3')
                 paused_position_candy = paused_position_candy + elapsed_candy
                 if paused_position_candy/1000 > 146: # is paused position larger than song length
-                    paused_position_candy = paused_position_candy - 146*1000
+                    paused_position_candy = paused_position_candy - 146*1000 #song length in ms
                 print(paused_position_candy/1000)
                 pg.mixer.music.play(start=paused_position_candy/1000,loops=-1)
+                #update grid theme
+                for s in squares:
+                    s.theme_update()
                 theme_screen = False
 
-            # In the main game loop, update the paused positions while the music is playing
+            # update music elapsed time
             if pg.mixer.music.get_busy():
                 if theme == 'doom':
                     elapsed_doom = pg.mixer.music.get_pos()
@@ -714,8 +847,7 @@ while run:
         if tie == True:
             square_group.empty()
 
-
-
+        #it works - do not touch
         if event.type == pg.MOUSEBUTTONDOWN and won == True:
             mx, my = pg.mouse.get_pos()
             if my > height - height/5:
@@ -812,6 +944,7 @@ while run:
                 square_group.update()
                 Update()
 
+        #only if the grid is reset and so on can the player start another game
         elif event.type == pg.MOUSEBUTTONDOWN and tie == False and won == False and tie_delay_go == False and menu_screen == False and theme_screen == False and difficulty_menu == False and about_screen == False:
             if player_first == True:
                 mx, my = pg.mouse.get_pos()
@@ -828,7 +961,7 @@ while run:
                     turn = 'o'
                     if bot_type == 'ai':
                         botmove()
-                    if bot_type == 'ml':
+                    elif bot_type == 'ml':
                         x = ai_move(True,df_board)
                         df_board.replace(x,'M',inplace=True)
                         x = ai_dict[x]
@@ -836,7 +969,7 @@ while run:
                             if s.number == x:
                                 s.clicked(s.x, s.y)
                                 move_sequence.append(x)
-                    if bot_type == 'nn':
+                    elif bot_type == 'nn':
                         move_sequence=[]
                         x = nn_move(True,df_board)
                         df_board.replace(x,'N',inplace=True)
