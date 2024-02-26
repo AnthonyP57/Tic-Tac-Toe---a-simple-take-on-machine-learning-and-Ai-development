@@ -16,8 +16,8 @@ width = info_object.current_w
 height = info_object.current_h
 print(width,height)
 
-width = 1600
-height = 900
+#width = 1600
+#height = 900
 gui_scale = 1
 
 #board for bots
