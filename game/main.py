@@ -16,8 +16,8 @@ width = info_object.current_w
 height = info_object.current_h
 print(width,height)
 
-# width = 1600
-# height = 900
+width = 1600
+height = 900
 gui_scale = 1
 
 #board for bots
@@ -403,10 +403,10 @@ def check_winner(player):
     for i in range(8):
         if board[winners[i][0]] == player and board[winners[i][1]] == player and board[winners[i][2]] == player:
             if theme == 'candy':
-                win_img = pg.image.load(player.upper() + ' Wins candy.png')
+                win_img = pg.image.load('assets' + '\\' + player.upper() + ' Wins candy.png')
                 win_img = pg.transform.scale(win_img,(height*16/9, height)).convert_alpha()
             else:
-                win_img = pg.image.load(player.upper() + ' Wins.png')
+                win_img = pg.image.load('assets'+'\\' + player.upper() + ' Wins.png')
                 win_img = pg.transform.scale(win_img, (height * 16 / 9, height)).convert_alpha()
             won = True
             won_animation = True
@@ -510,84 +510,84 @@ def checkedge():
 #diplay
 win = pg.display.set_mode((width, height))
 pg.display.set_caption('Tic Tac Toe')
-icon = pg.image.load('icon.png')
+icon = pg.image.load('assets\\icon.png')
 pg.display.set_icon(icon)
 clock = pg.time.Clock()
 
 # images
-org_difficulty = pg.image.load('original_difficulty.png').convert_alpha()
-org_theme = pg.image.load('original_theme.png').convert_alpha()
-org_about = pg.image.load('original_about.png').convert_alpha()
+org_difficulty = pg.image.load('assets\\original_difficulty.png').convert_alpha()
+org_theme = pg.image.load('assets\\original_theme.png').convert_alpha()
+org_about = pg.image.load('assets\\original_about.png').convert_alpha()
 
-blank_original = pg.image.load('original_grid.png').convert_alpha()
-x_original = pg.image.load('original_x.png').convert_alpha()
-o_original = pg.image.load('original_o.png').convert_alpha()
+blank_original = pg.image.load('assets\\original_grid.png').convert_alpha()
+x_original = pg.image.load('assets\\original_x.png').convert_alpha()
+o_original = pg.image.load('assets\\original_o.png').convert_alpha()
 
 blank_img = blank_original
 x_img = x_original
 o_img = o_original
 
-blank_candy = pg.image.load('candy_grid.png').convert_alpha()
-x_candy = pg.image.load('candy_x.png').convert_alpha()
-o_candy = pg.image.load('candy_o.png').convert_alpha()
+blank_candy = pg.image.load('assets\\candy_grid.png').convert_alpha()
+x_candy = pg.image.load('assets\\candy_x.png').convert_alpha()
+o_candy = pg.image.load('assets\\candy_o.png').convert_alpha()
 
-blank_doom = pg.image.load('doom_grid.png').convert_alpha()
-x_doom = pg.image.load('doom_x.png').convert_alpha()
-o_doom = pg.image.load('doom_o.png').convert_alpha()
+blank_doom = pg.image.load('assets\\doom_grid.png').convert_alpha()
+x_doom = pg.image.load('assets\\doom_x.png').convert_alpha()
+o_doom = pg.image.load('assets\\doom_o.png').convert_alpha()
 
-doom_bg  = pg.image.load("tictactoe_doom_theme_bg.png")
+doom_bg  = pg.image.load("assets\\tictactoe_doom_theme_bg.png")
 doom_bg = pg.transform.scale(doom_bg, (height*16/9, height)).convert_alpha()
-doom_front = pg.image.load("tictactoe_doom_theme_bgfront.png")
+doom_front = pg.image.load("assets\\tictactoe_doom_theme_bgfront.png")
 doom_front = pg.transform.scale(doom_front, (height*16/9, height)).convert_alpha()
-doom_logo = pg.image.load('tictactoe_doom_theme_logo.png')
+doom_logo = pg.image.load('assets\\tictactoe_doom_theme_logo.png')
 doom_logo = pg.transform.scale(doom_logo,(height*16/9, height)).convert_alpha()
 
-org_bg = pg.image.load("tictactoe_original_theme_bg.png")
+org_bg = pg.image.load("assets\\tictactoe_original_theme_bg.png")
 org_bg = pg.transform.scale(org_bg, (height*16/9, height)).convert_alpha()
-org_front = pg.image.load("tictactoe_original_theme_bgfront.png")
+org_front = pg.image.load("assets\\tictactoe_original_theme_bgfront.png")
 org_front = pg.transform.scale(org_front, (height*16/9, height)).convert_alpha()
-org_logo = pg.image.load('tictactoe_original_theme_logo.png')
+org_logo = pg.image.load('assets\\tictactoe_original_theme_logo.png')
 org_logo = pg.transform.scale(org_logo,(height*16/9, height)).convert_alpha()
 
-candy_logo = pg.image.load('tictactoe_candy_theme_logo.png')
+candy_logo = pg.image.load('assets\\tictactoe_candy_theme_logo.png')
 candy_logo = pg.transform.scale(candy_logo,(height*16/9, height)).convert_alpha()
-candy_bg = pg.image.load("tictactoe_candy_theme_bg.png")
+candy_bg = pg.image.load("assets\\tictactoe_candy_theme_bg.png")
 candy_bg = pg.transform.scale(candy_bg, (height*16/9, height)).convert()
-candy_front = pg.image.load("tictactoe_candy_theme_bgfront.png")
+candy_front = pg.image.load("assets\\tictactoe_candy_theme_bgfront.png")
 candy_front = pg.transform.scale(candy_front, (height*16/9, height)).convert_alpha()
 
-tie_scr = pg.image.load('tie.png')
+tie_scr = pg.image.load('assets\\tie.png')
 tie_scr = pg.transform.scale(tie_scr, (height * 16 / 9, height)).convert_alpha()
-tie_scr_candy = pg.image.load('tie_candy.png')
+tie_scr_candy = pg.image.load('assets\\tie_candy.png')
 tie_scr_candy = pg.transform.scale(tie_scr_candy, (height * 16 / 9, height)).convert_alpha()
 
-about_org = pg.image.load('about.png')
+about_org = pg.image.load('assets\\about.png')
 about_org = pg.transform.scale(about_org, (height*16/9, height)).convert_alpha()
 
-about_candy = pg.image.load('about_candy.png')
+about_candy = pg.image.load('assets\\about_candy.png')
 about_candy = pg.transform.scale(about_candy, (height*16/9, height)).convert_alpha()
-candy_menu = pg.image.load('candy_menu.png').convert_alpha()
-candy_quit = pg.image.load('candy_quit.png').convert_alpha()
+candy_menu = pg.image.load('assets\\candy_menu.png').convert_alpha()
+candy_quit = pg.image.load('assets\candy_quit.png').convert_alpha()
 
-original_menu = pg.image.load('original_menu.png').convert_alpha()
-original_quit = pg.image.load('original_quit.png').convert_alpha()
+original_menu = pg.image.load('assets\\original_menu.png').convert_alpha()
+original_quit = pg.image.load('assets\\original_quit.png').convert_alpha()
 
-doom_menu = pg.image.load('doom_menu.png').convert_alpha()
-doom_quit = pg.image.load('doom_quit.png').convert_alpha()
+doom_menu = pg.image.load('assets\\doom_menu.png').convert_alpha()
+doom_quit = pg.image.load('assets\\doom_quit.png').convert_alpha()
 
-ai_img = pg.image.load('ai.png').convert_alpha()
-nn_img = pg.image.load('nn.png').convert_alpha()
-ml_img = pg.image.load('ml.png').convert_alpha()
+ai_img = pg.image.load('assets\\ai.png').convert_alpha()
+nn_img = pg.image.load('assets\\nn.png').convert_alpha()
+ml_img = pg.image.load('assets\\ml.png').convert_alpha()
 
-candy_img = pg.image.load('candy.png').convert_alpha()
+candy_img = pg.image.load('assets\\candy.png').convert_alpha()
 
-doom_img = pg.image.load('doom.png').convert_alpha()
+doom_img = pg.image.load('assets\\doom.png').convert_alpha()
 
-original_img = pg.image.load('original.png').convert_alpha()
-click_img = pg.image.load('restart.png')
+original_img = pg.image.load('assets\\original.png').convert_alpha()
+click_img = pg.image.load('assets\\restart.png')
 click_img = pg.transform.scale(click_img, (height*16/9, height)).convert_alpha()
 
-click_candy = pg.image.load('restart_candy.png')
+click_candy = pg.image.load('assets\\restart_candy.png')
 click_candy = pg.transform.scale(click_candy, (height*16/9, height)).convert_alpha()
 
 win_img = None
@@ -600,8 +600,8 @@ about_button = button(round(height/18),round(height/18+2*height/9),org_about,rou
 quit_button = button(width - round(height / 50) - 33*round(0.75 * height / 1080), round(height / 50), original_quit, round(0.75 * height / 1080))
 
 ai_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25), ai_img, round(height/1080))
-nn_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + height/6), nn_img, round(height/1080))
-ml_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + 2*height/6), ml_img, round(height/1080))
+nn_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + 2*height/6), nn_img, round(height/1080))
+ml_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + height/6), ml_img, round(height/1080))
 
 candy_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + 2*height/6), candy_img, round(height/1080))
 doom_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + height/6), doom_img, round(height/1080))
@@ -671,7 +671,7 @@ else:
 
 tie = False
 
-bot_type = 'nn'
+bot_type = 'ai'
 
 #game loop
 while run:
@@ -792,14 +792,14 @@ while run:
                 quit_button = button(width - round(height / 50) - 33 * round(0.75 * height / 1080), round(height / 50), original_quit, round(0.75 * height / 1080))
                 pg.mixer.music.pause()
                 for s in squares:
-                    s.theme()
+                    s.theme_update()
                 theme_screen = False
 
             if doom_button.draw(win):
                 theme = 'doom'
                 menu_button = button(round(height/50), round(height/50), doom_menu, round(0.75*height/1080))
                 quit_button = button(width - round(height / 50) - 33 * round(0.75 * height / 1080), round(height / 50), doom_quit, round(0.75 * height / 1080))
-                pg.mixer.music.load('doom_theme.mp3')
+                pg.mixer.music.load('assets\\doom_theme.mp3')
                 paused_position_doom = paused_position_doom + elapsed_doom
                 if paused_position_doom/1000 > 5*60: # is paused position larger than song length
                     paused_position_doom = paused_position_doom - 5*60*1000 #song length in ms
@@ -814,7 +814,7 @@ while run:
                 theme = 'candy'
                 menu_button = button(round(height / 50), round(height / 50), candy_menu, round(0.75 * height / 1080))
                 quit_button = button(width - round(height / 50) - 33*round(0.75 * height / 1080), round(height / 50), candy_quit, round(0.75 * height / 1080))
-                pg.mixer.music.load('candy_theme.mp3')
+                pg.mixer.music.load('assets\\candy_theme.mp3')
                 paused_position_candy = paused_position_candy + elapsed_candy
                 if paused_position_candy/1000 > 146: # is paused position larger than song length
                     paused_position_candy = paused_position_candy - 146*1000 #song length in ms
