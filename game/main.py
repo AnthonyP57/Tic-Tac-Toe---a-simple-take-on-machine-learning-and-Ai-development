@@ -3,6 +3,9 @@ import random
 import pandas as pd
 from ai_moves import ai_move,restart,next_move,prev_move
 from nn_player import nn_move, nn_restart, nn_prev_move
+from sklearn.neural_network import MLPRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
 
 #fps cap
 fps = 30
@@ -16,8 +19,8 @@ width = info_object.current_w
 height = info_object.current_h
 print(width,height)
 
-#width = 1600
-#height = 900
+# width = 1600
+# height = 900
 gui_scale = 1
 
 #board for bots
@@ -91,7 +94,7 @@ class Square(pg.sprite.Sprite):
                         elif bot_type == 'ml':
                             prev_move(x)
                             next_move()
-                            x = ai_move(not player_first, df_board)
+                            x = ai_move(bot_first, df_board)
                             df_board.replace(x, 'M', inplace=True)
                             x = ai_dict[x]
                             for s in squares:
@@ -104,7 +107,7 @@ class Square(pg.sprite.Sprite):
                             if not player_first:
                                 nn_prev_move(x)
                                 print(x)
-                            y = nn_move(not player_first, df_board)
+                            y = nn_move(bot_first, df_board)
                             df_board.replace(y, 'N', inplace=True)
                             y = ai_dict[y]
                             for s in squares:
@@ -652,7 +655,8 @@ won_fps = 0
 won_animation = False
 click_prompt = False
 move_sequence=[]
-player_first = random.randint(1,2) == 1 #decide at random who moves first
+bot_first = random.randint(1,2) == 1 #decide at random who moves first
+player_first = not bot_first #player first variable is changed later
 tie_delay = 0
 tie_delay_go = False
 tie_fps = 0
@@ -739,7 +743,8 @@ while run:
                 click_prompt = False
                 tie = False
                 won = False
-                player_first = random.randint(1, 2) == 1
+                bot_first = random.randint(1, 2) == 1
+                player_first = not bot_first
                 df_board = {"left": [11, 21, 31],
                             "mid": [12, 22, 32],
                             "right": [13, 23, 33]
@@ -854,7 +859,8 @@ while run:
                 tie = False
                 click_prompt = False
                 won = False
-                player_first = random.randint(1, 2) == 1
+                bot_first = random.randint(1, 2) == 1
+                player_first = not bot_first
                 df_board = {"left": [11, 21, 31],
                             "mid": [12, 22, 32],
                             "right": [13, 23, 33]
@@ -885,7 +891,8 @@ while run:
                 click_prompt = False
                 won = False
                 tie = False
-                player_first = random.randint(1, 2) == 1
+                bot_first = random.randint(1, 2) == 1
+                player_first = not bot_first
                 df_board = {"left": [11, 21, 31],
                             "mid": [12, 22, 32],
                             "right": [13, 23, 33]
@@ -918,7 +925,8 @@ while run:
                 click_prompt = False
                 won = False
                 tie = False
-                player_first = random.randint(1, 2) == 1
+                bot_first = random.randint(1, 2) == 1
+                player_first = not bot_first
                 df_board = {"left": [11, 21, 31],
                             "mid": [12, 22, 32],
                             "right": [13, 23, 33]
