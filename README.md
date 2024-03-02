@@ -66,23 +66,31 @@ The best environment for that seemed to be Tic Tac Toe as the rules are plain, e
 | 500 | 51.5 | 51.5 |
 | 600 | 53.2 | 53.2 |
 
-# Summary
+# Perfomance summary
   The initial goal has been achieved by creating an Ai capable of winning more than 90% of the games. Among the two models developed, not only did neural networks prove to be a better player, but also were significantly easier to implement and cut average game time by four in comparison to SML.
 
 # Game as an iteractive experience
-  These logic types have been implemented into a standalone game, that is available both here as code and on itch.io as an executable file. I wanted to create someting unique and interesting in itself, so game art substitutes for the lack of excitement stemming from the game's nature. Player can choose from three game themes as well as three logic types to play against.
+  These logic types have been implemented into a standalone game, that is available both here as code and on itch.io as an executable file. I wanted to create someting unique and interesting in itself, so game art substitutes for the lack of excitement stemming from the game's nature. Player can choose from three game themes as well as three logic types to play against. More in game.
 
-## Game rules
+# Game rules
   As mentioned player is stacked against three various types of artificial intelligence, for simplicity's sake player's tag is always X and Ai's tag is always O. However it is always decided at random as to who moves first. As said there are three difficulties (in roughly descending order) to choose from, switching between them mid-game may cause a logic problem.
 
-## Game installation
+# Tactics against Ai s
+## Neural Networks
+### Always make the same set of moves, starting first gives them advantage. However, there is an obvious susceptibility.
+## Supervised Machine Learning
+### Often unpredictable, there is 33% chance it will block opponents move. Keep in mind that it will always try using the quickest path to win so a long-term tactic may pay off.
+## Rule-based Ai
+### Number of games lost by it is exactly 0.
+
+# Game installation
 ### From Github
-  Download and unzip game file, initinate main.py to start game. Make sure not to move any folders and files within the main folder
+  Download and unzip game file, initinate main.py to start game. Make sure not to move any folders and files within the main folder.
 
 ### From itch.io
-  Download and unzip game file, initiate .exe file or its shortcut to start game. Make sure not to move any folders and files within the main folder and to change shortcut path if necessary
+  Download and unzip game file, initiate .exe file or its shortcut to start game. Make sure not to move any folders and files within the main folder and to change shortcut path if necessary.
 
-## Disclamers
+# Disclamers
 - Learning functions have been disabled so as to make the game less demanding.
 - The game has been packed, not compiled which may cause a (very) slow start and explains why a tic tac toe game is ~182MB in size.
 - Supervised machine learning Ai can be slow as it is has a CPU-heavy logic.
