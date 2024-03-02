@@ -129,7 +129,7 @@ def nn_move(nn_first,board):
         scores_dict[score.item()]=move
         scores.append(score.item())
 
-    #check for the move that will have the highest score (probability of winning
+    #check for the move that will have the highest score (probability of winning)
     # print(scores_dict)
     best_score=max(scores)
     best_move=scores_dict[best_score]
