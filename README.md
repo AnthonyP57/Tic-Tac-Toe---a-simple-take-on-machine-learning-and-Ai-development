@@ -31,7 +31,7 @@ The best environment for that seemed to be Tic Tac Toe as the rules are plain, e
 ### Rule-based Ai is like a computer following a set of specific instructions or conditions to make decisions or take actions, operating on predefined rules and logic. For example: if the opponent moved here move there and only there.
 
 # Performance
-  (Percent of games won and not lost - meaning in a specific increment, not cumulatively)
+  (Percent of games won and not lost - meaning in a specific increment, not cumulatively. Number of games played is cumulative.)
 ## Random moves - as comparison for logic evaluation
 | Random moves vs Random moves | number of games played | percent of games won | percent of games not lost (win and draw) |
 | --- | --- | --- | --- |
