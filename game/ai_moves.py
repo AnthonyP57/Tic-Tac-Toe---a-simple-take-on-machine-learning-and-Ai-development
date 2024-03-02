@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan  7 16:50:11 2024
+
+@author: Admin
+"""
 import pandas as pd
 import numpy as np
 import random
@@ -274,26 +280,26 @@ def ai_move(ai_first,board):
 
             if len(legal_moves) == 1:
                 return int(legal_moves[0])
-
+            
+            # 33% chance for blocking the opponent
             x = random.randint(1,3) == 1
 
             win_first=filter_df(win_first, move_sequence)
 
-            if win_first.empty == True and ((set(legal_moves) - set(win_first.iloc[:, actual_move].values.flatten())) == set(legal_moves)) and x:
+            if win_first.empty == True and ((set(legal_moves) - set(win_first.iloc[:, actual_move].values.flatten())) == set(legal_moves)) and not x:
                 lost_first=filter_df(lost_first,move_sequence)
                 if lost_first.empty:
                     draw=filter_df(draw,move_sequence)
                     if draw.empty:
                         lost_notfirst=filter_df(lost_notfirst, move_sequence)
-                        if lost_notfirst.empty:
-                            win_notfirst=filter_df(win_first, move_sequence)
+                        win_notfirst=filter_df(win_first, move_sequence)
             if x == False:
                 lost_first = filter_df(lost_first, move_sequence)
                 win_notfirst = filter_df(win_first, move_sequence)
                 draw = filter_df(draw, move_sequence)
 
             #if there is a non empty data frame and there is a possibility to move at all
-            if win_first.empty == False and not((set(legal_moves) - set(win_first.iloc[:, actual_move].values.flatten())) == set(legal_moves)) and x:
+            if win_first.empty == False and not((set(legal_moves) - set(win_first.iloc[:, actual_move].values.flatten())) == set(legal_moves)) and not x:
                 print('win first')
                 # print(actual_move)
                 win_first=sort_df_by_zeros(win_first)
@@ -312,7 +318,7 @@ def ai_move(ai_first,board):
                 return move
 
             #elif there is a non empty data frame and there is a possibility to move at all
-            elif lost_notfirst.empty == False and not(set(legal_moves)-set(lost_notfirst.iloc[:,actual_move].values.flatten())==set(legal_moves)) and x:
+            elif lost_notfirst.empty == False and not(set(legal_moves)-set(lost_notfirst.iloc[:,actual_move].values.flatten())==set(legal_moves)) and not x:
                 print('legal move for lost not first')
                 lost_notfirst = sort_df_by_zeros(lost_notfirst)
                 loop_end=False
@@ -416,23 +422,23 @@ def ai_move(ai_first,board):
             if len(legal_moves)==1:
                 return int(legal_moves[0])
 
+            # 33% chance for blocking the opponent
             x = random.randint(1,3) == 1
 
             win_notfirst=filter_df(win_notfirst, move_sequence)
-            if win_notfirst.empty == True and (set(legal_moves) - set(win_notfirst.iloc[:, actual_move].values.flatten()) == set(legal_moves)) and x:
+            if win_notfirst.empty == True and (set(legal_moves) - set(win_notfirst.iloc[:, actual_move].values.flatten()) == set(legal_moves)) and not x:
                 lost_first=filter_df(lost_first,move_sequence)
                 if lost_first.empty:
                     draw=filter_df(draw,move_sequence)
                     if draw.empty:
                         lost_notfirst=filter_df(lost_notfirst, move_sequence)
-                        if lost_notfirst.empty:
-                            win_first=filter_df(win_first, move_sequence)
+                        win_first=filter_df(win_first, move_sequence)
             if x == False:
                 lost_notfirst = filter_df(lost_notfirst, move_sequence)
                 win_first = filter_df(win_first, move_sequence)
                 draw = filter_df(draw, move_sequence)
 
-            if win_notfirst.empty == False and not(set(legal_moves)-set(win_notfirst.iloc[:,actual_move].values.flatten())==set(legal_moves)) and x:
+            if win_notfirst.empty == False and not(set(legal_moves)-set(win_notfirst.iloc[:,actual_move].values.flatten())==set(legal_moves)) and not x:
                 print('win not first not empty and legal move')
                 win_notfirst=sort_df_by_zeros(win_notfirst)
                 loop_end=False
@@ -448,7 +454,7 @@ def ai_move(ai_first,board):
                 actual_move+=1
                 return move
 
-            elif lost_first.empty == False and not(set(legal_moves)-set(lost_first.iloc[:,actual_move].values.flatten())==set(legal_moves)) and x:
+            elif lost_first.empty == False and not(set(legal_moves)-set(lost_first.iloc[:,actual_move].values.flatten())==set(legal_moves)) and not x:
                 print('legal move for lost first')
                 lost_first = sort_df_by_zeros(lost_first)
                 loop_end=False
