@@ -90,7 +90,7 @@ The best environment for that seemed to be Tic Tac Toe as the rules are plain, e
   Download and unzip game file, run main.py to start game. Make sure not to move any folders and files within the main folder.
 
 ### From itch.io
-  Download and unzip game file, initiate .exe file or its shortcut to start game. Make sure not to move any folders and files within the main folder and to change shortcut path if necessary or create another shortcut (application icon is available in assets folder).
+  Download and unzip game file, initiate .exe file or its shortcut to start game. Make sure not to move any folders and files within the main folder and to change shortcut path if necessary or create another shortcut (application icon for it is available in assets folder).
 
 # Disclamers
 - The game will be flaged by antiviruses since it is an .exe file.
