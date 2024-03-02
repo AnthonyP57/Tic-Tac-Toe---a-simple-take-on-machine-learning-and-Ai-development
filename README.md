@@ -14,19 +14,21 @@ The best environment for that seemed to be Tic Tac Toe as the rules are plain, e
 - Neural Networks - a group of 'neurons' trained on the dataset obtained from the games played by SML
 - Rule-based Ai - all the decisions are based on a given set of rules (only used in game, no measurements were performed)
 
-# How it works:
+# How they *think*
 
 ## Supervised Machine Learning
 
   <img src="https://github.com/AnthonyP57/Tic-Tac-Toe---a-simple-take-on-machine-learning-and-Ai-development/blob/main/photos/sml.png">
+  
+### *simplified logic*
 
 ## Neural Networks
 
-  Neural networks are like virtual brains that learn from examples, adjusting connections between neurons to understand and solve problems, such as recognizing images or making predictions.
+### Neural networks are like virtual brains that learn from examples, adjusting connections between neurons to understand and solve problems, such as recognizing images or making predictions.
 
 ## Rule-based Ai
 
-  Rule-based Ai is like a computer following a set of specific instructions or conditions to make decisions or take actions, operating on predefined rules and logic. For example: if the opponent moved here move there and only there.
+### Rule-based Ai is like a computer following a set of specific instructions or conditions to make decisions or take actions, operating on predefined rules and logic. For example: if the opponent moved here move there and only there.
 
 # Performance
 
@@ -67,9 +69,9 @@ The best environment for that seemed to be Tic Tac Toe as the rules are plain, e
 | 600 | 53.2 | 53.2 |
 
 # Perfomance summary
-  The initial goal has been achieved by creating an Ai capable of winning more than 90% of the games. Among the two models developed, not only did neural networks prove to be a better player, but also were significantly easier to implement and cut average game time by four in comparison to SML.
+  The initial goal has been achieved by creating an Ai capable of winning more than 90% of the games (against a random moves player). Among the two models developed, not only did neural networks prove to be a better player, but also were significantly easier to implement and cut average game time by four in comparison to SML.
 
-# Game as an iteractive experience
+# Game as an interactive experience
   These logic types have been implemented into a standalone game, that is available both here as code and on itch.io as an executable file. I wanted to create someting unique and interesting in itself, so game art substitutes for the lack of excitement stemming from the game's nature. Player can choose from three game themes as well as three logic types to play against. More in game.
 
 # Game rules
@@ -79,13 +81,13 @@ The best environment for that seemed to be Tic Tac Toe as the rules are plain, e
 ## Neural Networks
 ### Always make the same set of moves, starting first gives them advantage. However, there is an obvious susceptibility.
 ## Supervised Machine Learning
-### Often unpredictable, there is 33% chance it will block opponents move. Keep in mind that it will always try using the quickest path to win so a long-term tactic may pay off.
+### Often unpredictable, there is (manually added to make game the more exciting) 33% chance it will block opponents move. Keep in mind that it will always try using the quickest path to win so a long-term tactic may pay off.
 ## Rule-based Ai
 ### Number of games lost by it is exactly 0.
 
 # Game installation
 ### From Github
-  Download and unzip game file, initinate main.py to start game. Make sure not to move any folders and files within the main folder.
+  Download and unzip game file, run main.py to start game. Make sure not to move any folders and files within the main folder.
 
 ### From itch.io
   Download and unzip game file, initiate .exe file or its shortcut to start game. Make sure not to move any folders and files within the main folder and to change shortcut path if necessary.
