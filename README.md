@@ -39,8 +39,8 @@ The best environment for that seemed to be Tic Tac Toe as the rules are plain, e
 ## Supervised Machine Learning
 | Supervised Machine Learning vs random moves | number of games played | percent of games won | percent of games not lost (win and draw) | average time for game [sec] |
 | --- | --- | --- | --- | --- |
-| moves based on frequency | 400 | 65.9 | 74.19 | 1.7 in power saving mode |
-| moves based on frequency | 800 | 69.75 | 78.5 | 1.425 in power saving mode |
+| moves based on frequency | 400 | 65.9 | 74.2 | 1.7 in power saving mode |
+| moves based on frequency | 800 | 69.8 | 78.5 | 1.425 in power saving mode |
 | moves based on length of games | 1200 | 75.1 | 82.6 | 1.5 in power saving mode |
 | moves based on length of games | 1600 | 76.8 | 82.3 | 0.6 in high performance mode |
 | moves based on length of games | 2600 | 79.5 | 86.5 | 0.7 in high performance mode |
