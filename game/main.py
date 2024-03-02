@@ -3,9 +3,10 @@ import random
 import pandas as pd
 from ai_moves import ai_move,restart,next_move,prev_move
 from nn_player import nn_move, nn_restart, nn_prev_move
-from sklearn.neural_network import MLPRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
+#these may be required:
+#from sklearn.neural_network import MLPRegressor
+#from sklearn.model_selection import train_test_split
+#from sklearn.metrics import mean_squared_error
 
 #fps cap
 fps = 30
