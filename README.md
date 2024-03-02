@@ -90,9 +90,10 @@ The best environment for that seemed to be Tic Tac Toe as the rules are plain, e
   Download and unzip game file, run main.py to start game. Make sure not to move any folders and files within the main folder.
 
 ### From itch.io
-  Download and unzip game file, initiate .exe file or its shortcut to start game. Make sure not to move any folders and files within the main folder and to change shortcut path if necessary.
+  Download and unzip game file, initiate .exe file or its shortcut to start game. Make sure not to move any folders and files within the main folder and to change shortcut path if necessary or create another shortcut (application icon is available in assets folder).
 
 # Disclamers
+- The game will be flaged by antiviruses since it is an .exe file.
 - Learning functions have been disabled so as to make the game less demanding.
 - The game has been packed, not compiled which may cause a (very) slow start and explains why a tic tac toe game is ~182MB in size.
 - Supervised machine learning Ai can be slow as it is has a CPU-heavy logic.
