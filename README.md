@@ -16,4 +16,4 @@ The best environment for that seemed to be Tic Tac Toe as the rules are plain, e
 
 - Supervised Machine Learning
 
-  <img src="https://github.com/AnthonyP57/Tic-Tac-Toe---a-simple-take-on-machine-learning-and-Ai-development/blob/main/photos/sml.png" alt="Your Image" height="800">
+  <img src="https://github.com/AnthonyP57/Tic-Tac-Toe---a-simple-take-on-machine-learning-and-Ai-development/blob/main/photos/sml.png" alt="Your Image" width='1000' height="837">
