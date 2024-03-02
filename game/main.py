@@ -3,10 +3,9 @@ import random
 import pandas as pd
 from ai_moves import ai_move,restart,next_move,prev_move
 from nn_player import nn_move, nn_restart, nn_prev_move
-#these may be required:
-#from sklearn.neural_network import MLPRegressor
-#from sklearn.model_selection import train_test_split
-#from sklearn.metrics import mean_squared_error
+from sklearn.neural_network import MLPRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
 
 #fps cap
 fps = 30
@@ -604,8 +603,8 @@ about_button = button(round(height/18),round(height/18+2*height/9),org_about,rou
 quit_button = button(width - round(height / 50) - 33*round(0.75 * height / 1080), round(height / 50), original_quit, round(0.75 * height / 1080))
 
 ai_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25), ai_img, round(height/1080))
-nn_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + 2*height/6), nn_img, round(height/1080))
-ml_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + height/6), ml_img, round(height/1080))
+nn_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + height/6), nn_img, round(height/1080))
+ml_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + 2*height/6), ml_img, round(height/1080))
 
 candy_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + 2*height/6), candy_img, round(height/1080))
 doom_button = button(width/2 - 0.5*round(368*round(height/1080)), round(height/2.25 + height/6), doom_img, round(height/1080))
