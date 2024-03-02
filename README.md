@@ -97,7 +97,7 @@ The best environment for that seemed to be Tic Tac Toe as the rules are plain, e
 - The game has been packed, not compiled which may cause a (very) slow start and explains why a tic tac toe game is ~182MB in size.
 - Supervised machine learning Ai can be slow as it is has a CPU-heavy logic.
 - Changing Ai mid-game may cause logic problems.
-- Game initially has been developed on 16:9 1080p screen, however it should scale wihtout a problem for a higher resolution or wide screen monitor.
+- Game initially has been developed on 16:9 1080p screen, however it should scale without a problem for a higher resolution or wide screen monitor.
 
 ## Python Packages
 | Python | 3.8 |
