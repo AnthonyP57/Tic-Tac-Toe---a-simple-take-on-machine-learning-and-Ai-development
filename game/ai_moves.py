@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan  7 16:50:11 2024
+
+@author: Admin
+"""
 import pandas as pd
 import numpy as np
 import random
@@ -282,9 +288,11 @@ def ai_move(ai_first,board):
 
             if win_first.empty == True and ((set(legal_moves) - set(win_first.iloc[:, actual_move].values.flatten())) == set(legal_moves)) and not x:
                 lost_first=filter_df(lost_first,move_sequence)
-                lost_notfirst=filter_df(lost_notfirst, move_sequence)
-                win_notfirst=filter_df(win_first, move_sequence)
-            if x == False:
+                if lost_first.empty and not(set(legal_moves)-set(lost_notfirst.iloc[:,actual_move].values.flatten())==set(legal_moves)) and not x:
+                    draw=filter_df(draw,move_sequence)
+                    lost_notfirst=filter_df(lost_notfirst, move_sequence)
+                    win_notfirst=filter_df(win_first, move_sequence)
+            if x == True:
                 lost_first = filter_df(lost_first, move_sequence)
                 win_notfirst = filter_df(win_first, move_sequence)
                 draw = filter_df(draw, move_sequence)
@@ -419,9 +427,11 @@ def ai_move(ai_first,board):
             win_notfirst=filter_df(win_notfirst, move_sequence)
             if win_notfirst.empty == True and (set(legal_moves) - set(win_notfirst.iloc[:, actual_move].values.flatten()) == set(legal_moves)) and not x:
                 lost_first=filter_df(lost_first,move_sequence)
-                lost_notfirst=filter_df(lost_notfirst, move_sequence)
-                win_first=filter_df(win_first, move_sequence)
-            if x == False:
+                if lost_first.empty and not(set(legal_moves)-set(lost_first.iloc[:,actual_move].values.flatten())==set(legal_moves)) and not x:
+                    draw=filter_df(draw,move_sequence)
+                    lost_notfirst=filter_df(lost_notfirst, move_sequence)
+                    win_first=filter_df(win_first, move_sequence)
+            if x == True:
                 lost_notfirst = filter_df(lost_notfirst, move_sequence)
                 win_first = filter_df(win_first, move_sequence)
                 draw = filter_df(draw, move_sequence)
