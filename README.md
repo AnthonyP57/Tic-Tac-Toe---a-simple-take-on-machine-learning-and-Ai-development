@@ -4,8 +4,9 @@ game available at:
 https://anthonyp57.itch.io/tic-tac-toe-a-simple-take-on-machine-learning-and-ai-development
 
 as well as (in case itch.io doesn't work):
+- zip:
 https://drive.google.com/file/d/17OcmlEpBm4_jRNeulW1a91WTdnw5jLeK/view?usp=drive_link
-
+- files:
 https://drive.google.com/drive/folders/1WmLtWV6CR3TQ8hgABv6e8rKJ5JXuEPRr?usp=drive_link
 
 
