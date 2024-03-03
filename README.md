@@ -9,8 +9,9 @@ https://drive.google.com/file/d/17OcmlEpBm4_jRNeulW1a91WTdnw5jLeK/view?usp=drive
 - files:
 https://drive.google.com/drive/folders/1WmLtWV6CR3TQ8hgABv6e8rKJ5JXuEPRr?usp=drive_link
 
-
 And in the form of Python code
+
+### *(There are various themes and Ai s to choose from if you press pause or escape button)*
 
 # Initial plan
 Creating an algorithm that has no applied logic, but instead learns from its previous attempts and improves (no direct game prediction such as MiniMax algorithm).
