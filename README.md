@@ -6,7 +6,8 @@ https://anthonyp57.itch.io/tic-tac-toe-a-simple-take-on-machine-learning-and-ai-
 as well as (in case itch.io doesn't work):
 https://drive.google.com/file/d/17OcmlEpBm4_jRNeulW1a91WTdnw5jLeK/view?usp=drive_link
 
-As well as here in the form of Python code
+
+And in the form of Python code
 
 # Initial plan
 Creating an algorithm that has no applied logic, but instead learns from its previous attempts and improves (no direct game prediction such as MiniMax algorithm).
