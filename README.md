@@ -3,6 +3,9 @@
 game available at:
 https://anthonyp57.itch.io/tic-tac-toe-a-simple-take-on-machine-learning-and-ai-development
 
+as well as (in case itch.io doesn't work):
+https://drive.google.com/file/d/17OcmlEpBm4_jRNeulW1a91WTdnw5jLeK/view?usp=drive_link
+
 As well as here in the form of Python code
 
 # Initial plan
