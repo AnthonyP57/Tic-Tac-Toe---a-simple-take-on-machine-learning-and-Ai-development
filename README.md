@@ -14,8 +14,8 @@ And in the form of Python code
 ### *(There are various themes and Ai s to choose from if you press pause or escape button)*
 
 # Future development
-- adding Recurrent Neural Networks
-- adding Reinforced Machine Learning
+- Recurrent Neural Networks
+- Reinforced Machine Learning
 - adding information on data collection
 
 # Initial plan
