@@ -13,6 +13,11 @@ And in the form of Python code
 
 ### *(There are various themes and Ai s to choose from if you press pause or escape button)*
 
+# Future development
+- adding Recurrent Neural Networks
+- adding Reinforced Machine Learning
+- adding information on data collection
+
 # Initial plan
 Creating an algorithm that has no applied logic, but instead learns from its previous attempts and improves (no direct game prediction such as MiniMax algorithm).
 The best environment for that seemed to be Tic Tac Toe as the rules are plain, evaluation is easy and it is possible to supervise and interprete the process.
